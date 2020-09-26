@@ -34,14 +34,15 @@ class Homepage1 extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget> [
             Categories(),
-         Container(
+      Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft : Radius.circular(15.0),bottomRight: Radius.circular(15.0) ),
             color: Colors.indigoAccent
         ),
-          height: 150.0,
-          padding: EdgeInsets.only(top: 5.0),
-        child: ListView.builder(
+        height: 150.0,
+        padding: EdgeInsets.only(top: 5.0),
+
+        child:ListView.builder(
             padding: EdgeInsets.only(left: 15.0),
             scrollDirection: Axis.horizontal,
             itemCount: ads.length,
@@ -60,7 +61,14 @@ class Homepage1 extends StatelessWidget {
             }
         ),
       ),
-
+            Expanded(
+              child: GridView.builder(
+                itemCount: products.length,
+                gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemBuilder: (context,index)=> ItemCard(),
+              ),
+            )
           ]
       ),
   ]
@@ -103,4 +111,31 @@ Widget buildCategory( int index){
     ),
   )
 
+}
+class ItemCard extends StatefulWidget {
+  
+}
+  @override
+  _ItemCardState createState() => _ItemCardState();
+}
+
+class _ItemCardState extends State<ItemCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children <Widget> {
+        Container(
+          height: 100,
+          width: 160,
+          decoration: BoxDecoration(
+            color: Product[0].color,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Image.asset(Product[0], image),
+
+         Text('kurtas'),
+        ),
+      ]
+    );
+  }
 }
